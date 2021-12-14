@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (req, res) => {
-    res.end('Website');
+    res.render('index');
 });
 
 const server = app.listen(process.env.PORT || 5000, () => {
