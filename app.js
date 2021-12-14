@@ -1,20 +1,12 @@
-/*const express = require('express');
+const express = require('express');
 const socketio = require('socket.io');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 let currentUsers = 0;
 
-app.get('/', (req, res) => {
-    res.end('Website');
-});
-
-const server = app.listen(process.env.PORT || 3000, () => {
-    console.log("server is running");
-});
-*/
 const express = require('express');
 let app = express();
 
@@ -27,7 +19,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 });
 
 
-/*
+
 const io = socketio(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -57,5 +49,3 @@ io.on('connection', socket => {
         io.sockets.emit('receive_message', {message: data.message, username: socket.username});
     });
 });
-
-*/
