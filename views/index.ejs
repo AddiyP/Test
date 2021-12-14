@@ -11,7 +11,7 @@
     <input type="text" id="username" placeholder="username">
     <button id="usernameBtn">Submit</button>
     <div class="message-box">
-        <ul id="message-list"></ul>
+        <ul id="message-list"><li> </li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li><li>~</li></ul>
     </div>
     <div>
         <input type="text" id="message">
@@ -61,12 +61,21 @@ const maxMessageLength = 30;
         socket.emit('new_message', {message: message.value});
         message.value = '';
     });
-
+    
+    const maxMessages = 15;
+    messageList.childNodes[0].remove();
     socket.on('receive_message', data => {
         console.log(data);
+        console.log('~' + messageList.childNodes.length);
         let listItem = document.createElement('li');
         listItem.innerHTML = '<a href="https://twitter.com/' + data.username + '" target="_blank">' + data.username + '</a>: ' + data.message;
         messageList.appendChild(listItem);
+        if (messageList.childNodes.length > maxMessages)
+        {
+            messageList.childNodes[0].remove();
+            console.log(messageList.childNodes.length);
+        }
+        
     });
 })();
 </script>
