@@ -8,13 +8,14 @@ app.use(express.static('public'));
 let currentUsers = 0;
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.end('Website');
 });
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log("server is running");
 });
 
+/*
 const io = socketio(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -44,3 +45,5 @@ io.on('connection', socket => {
         io.sockets.emit('receive_message', {message: data.message, username: socket.username});
     });
 });
+
+*/
