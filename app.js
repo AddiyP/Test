@@ -1,11 +1,9 @@
 const express = require('express');
-const socketio = require('socket.io');
+//const socketio = require('socket.io');
 const app = express();
 
 app.set('view engine', 'ejs');
 //app.use(express.static('public'));
-
-let currentUsers = 0;
 
 const express = require('express');
 let app = express();
@@ -19,7 +17,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 });
 
 
-
+/*
 const io = socketio(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -36,8 +34,6 @@ io.on('connection', socket => {
     socket.username = "Anonymous";
     socket.isAuthenticated = false;
 
-    currentUsers++;
-
     socket.on('change_username', data => {
         console.log("new username");
         socket.username = data.username;
@@ -49,3 +45,4 @@ io.on('connection', socket => {
         io.sockets.emit('receive_message', {message: data.message, username: socket.username});
     });
 });
+*/
