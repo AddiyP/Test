@@ -8,7 +8,8 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.end('webstie');
+    //res.render('index');
 });
 
 const server = app.listen(process.env.PORT || 5000, () => {
