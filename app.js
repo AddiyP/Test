@@ -2,7 +2,7 @@ const express = require('express');
 //const socketio = require('socket.io');
 const app = express();
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 //app.use(express.static('public'));
 
 const express = require('express');
