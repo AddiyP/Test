@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-    res.end('webstie');
+    res.end('website 2');
     //res.render('index');
 });
 
