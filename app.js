@@ -5,8 +5,7 @@ const app = express();
 //app.set('view engine', 'ejs');
 //app.use(express.static('public'));
 
-const express = require('express');
-let app = express();
+
 
 app.get('/', (req, res) => {
     res.end('Website');
