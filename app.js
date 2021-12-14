@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const socketio = require('socket.io');
 const app = express();
 
@@ -14,6 +14,18 @@ app.get('/', (req, res) => {
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log("server is running");
 });
+*/
+const express = require('express');
+let app = express();
+
+app.get('/', (req, res) => {
+    res.end('Website');
+});
+
+const server = app.listen(process.env.PORT || 5000, () => {
+    console.log('Server is running');
+});
+
 
 /*
 const io = socketio(server, {
