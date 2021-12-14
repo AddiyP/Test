@@ -1,8 +1,5 @@
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src *;
-   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
-   style-src  'self' 'unsafe-inline' *">
-   <title>Beans Chat</title>
+    <title>Beans Chat</title>
     <style>
         ul {
             list-style-type: none;
@@ -31,8 +28,8 @@ const maxMessageLength = 30;
     let username = document.querySelector('#username');
     let usernameBtn = document.querySelector('#usernameBtn');
     
-    usernameBtn.addEventListener('click', e => {
-        if (username.value.length < maxUsernameLength)
+    username.addEventListener('keydown', e => {
+        if (e.code === 'Enter')
         {
             console.log(username.value);
             socket.emit('change_username', {username: username.value});
@@ -40,17 +37,29 @@ const maxMessageLength = 30;
         }
     });
 
+    usernameBtn.addEventListener('click', e => {
+        console.log(username.value);
+        socket.emit('change_username', {username: username.value});
+        username.value = '';
+    });
+
     let message = document.querySelector('#message');
     let messageBtn = document.querySelector('#messageBtn');
     let messageList = document.querySelector('#message-list');
 
-    messageBtn.addEventListener('click', e => {
-        if (message.value.length < maxMessageLength)
+    message.addEventListener('keydown', e => {
+        if (e.code === 'Enter')
         {
             console.log(message.value);
             socket.emit('new_message', {message: message.value});
             message.value = '';
         }
+    });
+
+    messageBtn.addEventListener('click', e => {
+        console.log(message.value);
+        socket.emit('new_message', {message: message.value});
+        message.value = '';
     });
 
     socket.on('receive_message', data => {
