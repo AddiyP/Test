@@ -8,8 +8,8 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-    res.end('website 2');
-    //res.render('index');
+    //res.end('website 2');
+    res.render('index');
 });
 
 const server = app.listen(process.env.PORT || 5000, () => {
