@@ -15,10 +15,10 @@
   "description": "beanschat.com",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
  },
  "engines": {
-  "node": "16.13.1"
+  "node": "14.x"
 },
   "author": "Addy Prairie",
   "license": "ISC",
