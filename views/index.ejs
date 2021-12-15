@@ -80,7 +80,7 @@ const maxMessageLength = 30;
         console.log(data);
         console.log('~' + messageList.childNodes.length);
         let listItem = document.createElement('li');
-        listItem.innerHTML = '<u>' + data.username + '</u>: ' + data.message;
+        listItem.innerText = '' + data.username + ': ' + data.message;
         messageList.appendChild(listItem);
         if (messageList.childNodes.length > maxMessages)
         {
