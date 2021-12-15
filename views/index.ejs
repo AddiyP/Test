@@ -89,6 +89,10 @@ const maxMessageLength = 30;
         }
         
     });
+    socket.on('close_user', data => {
+        console.log('close run!');
+        window.open("about:blank", '_self').write('kicked');
+    });
 })();
 </script>
 </body>
