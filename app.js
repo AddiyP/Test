@@ -16,6 +16,14 @@ const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Server is running');
 });
 
+var generateUsername = function() {
+    let first = ['spicy', 'chunky', 'chubby', 'pathetic', 'dumb', 'desperate', 'empty'];
+    let second = ['meatloaf', 'pizza', 'fish', 'pig', 'redditor', '( * ~ *)', 'clown'];
+    let index1 = Math.floor(Math.random() * first.length);
+    let index2 = Math.floor(Math.random() * second.length);
+    return first[index1] + "-" + second[index2];
+}
+
 const io = socketio(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -29,7 +37,7 @@ const io = socketio(server, {
 io.on('connection', socket => {
     console.log('User connected');
 
-    socket.username = "anon";
+    socket.username = generateUsername();
     socket.isAuthenticated = false;
 
     socket.on('change_username', data => {
