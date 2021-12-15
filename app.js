@@ -51,6 +51,6 @@ io.on('connection', socket => {
         io.sockets.emit('receive_message', {message: data.message, username: socket.username});
     });
     
-    io.sockets.emit('receive_message', {message: '' + username + ' joined', username: 'server'});
+    io.sockets.emit('receive_message', {message: '' + socket.username + ' joined', username: 'server'});
 });
 
