@@ -47,10 +47,33 @@ io.on('connection', socket => {
     });
 
     socket.on('new_message', data => {
-        console.log('new message');
-        io.sockets.emit('receive_message', {message: data.message, username: socket.username});
+        if (!parseCommands(data.message))
+        {
+            io.sockets.emit('receive_message', {message: data.message, username: socket.username});
+        }
+        
     });
-    
+
     io.sockets.emit('receive_message', {message: '' + socket.username + ' joined', username: 'server'});
+
+    var parseCommands = function (string) {
+        if (string.charAt(0) != '$')
+        {
+            return false;
+        }
+        else
+        {
+            let args = string.split(' ');
+            let type = args[1];
+            
+            if (type === "KICKALL")
+            {
+                console.log('KICKALL');
+                io.sockets.emit('close_user', {});
+
+            }
+        }
+        return true;
+    };
 });
 
