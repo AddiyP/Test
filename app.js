@@ -46,7 +46,34 @@ io.on('connection', socket => {
         console.log(data);
     });
   socket.on('new_message', data => {
+        let firstBroken = data.message.split('{'); /* Parses string to find all beanmotes */
+        let finalBroken = []; 
+        let brokenType = []; /* A type of 1 indicates a beanmote */
+        let count = 0;
+        for (let i = 0; i < firstBroken.length; i++)
+        {
+            let currBroken = firstBroken[i].split('}');
+            for (let j = 0; j < currBroken.length; j++)
+            {
+                finalBroken[count] = currBroken[j];
+                if (finalBroken[count].substr(0, 4) === "http" || finalBroken[count].substr(0, 5) === " http")
+                {
+                    brokenType[count] = 1;
+                }
+                else
+                {
+                    brokenType[count] = 0;
+                }
+                count++;
+            }
+        }
         
+        let send = {}; /* Object to send */
+        send.username = socket.username;
+        send.stringChunks = finalBroken;
+        send.chunkTypes = brokenType;
+
+        io.sockets.emit('receive_message', send);
     });
 });
 
