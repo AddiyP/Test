@@ -47,33 +47,39 @@ io.on('connection', socket => {
     });
 
     socket.on('new_message', data => {
-        if (!parseCommands(data.message))
+        let firstBroken = data.message.split('{'); /* Parses string to find all beanmotes */
+        let finalBroken = []; 
+        let brokenType = []; /* A type of 1 indicates a beanmote */
+        let count = 0;
+        for (let i = 0; i < firstBroken.length; i++)
         {
-            io.sockets.emit('receive_message', {message: data.message, username: socket.username});
-        }
-        
-    });
-
-    io.sockets.emit('receive_message', {message: '' + socket.username + ' joined', username: 'server'});
-
-    var parseCommands = function (string) {
-        if (string.charAt(0) != '$')
-        {
-            return false;
-        }
-        else
-        {
-            let args = string.split(' ');
-            let type = args[1];
-            
-            if (type === "KICKALL")
+            let currBroken = firstBroken[i].split('}');
+            for (let j = 0; j < currBroken.length; j++)
             {
-                console.log('KICKALL');
-                io.sockets.emit('close_user', {});
-
+                finalBroken[count] = currBroken[j];
+                if (finalBroken[count].substr(0, 4) === "http" || finalBroken[count].substr(0, 5) === " http")
+                {
+                    brokenType[count] = 1;
+                }
+                else
+                {
+                    brokenType[count] = 0;
+                }
+                count++;
             }
         }
-        return true;
-    };
+        
+        let send = {}; /* Object to send */
+        send.username = socket.username;
+        send.stringChunks = finalBroken;
+        send.chunkTypes = brokenType;
+
+        io.sockets.emit('receive_message', send);
+    });
+    let send = {};
+    send.username = 'server';
+    send.stringChunks = [' ' + username + ' joined'];
+    send.chunkTypes = [0];
+    io.sockets.emit('receive_message', send);
 });
 
