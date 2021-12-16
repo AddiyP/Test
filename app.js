@@ -45,5 +45,8 @@ io.on('connection', socket => {
         socket.username = data.username;
         console.log(data);
     });
+  socket.on('new_message', data => {
+        
+    });
 });
 
