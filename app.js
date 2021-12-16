@@ -2,8 +2,17 @@ const express = require('express');
 const socketio = require('socket.io');
 const app = express();
 
+const mongoURI = process.env.MOGODB_URI;
+const MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  db.close();
+});
+
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static('public'))
 
 
 
