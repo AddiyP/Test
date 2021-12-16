@@ -6,7 +6,10 @@ const mongoURI = process.env.MOGODB_URI;
 const MongoClient = require('mongodb').MongoClient;
 
 MongoClient.connect(mongoURI, function(err, db) {
-  if (err) throw err;
+  if (err)
+  {
+    return;
+  }
   console.log("Database created!");
   db.close();
 });
