@@ -77,10 +77,24 @@ const maxMessageLength = 30;
     const maxMessages = 15;
     messageList.childNodes[0].remove();
     socket.on('receive_message', data => {
-        console.log(data);
-        console.log('~' + messageList.childNodes.length);
         let listItem = document.createElement('li');
-        listItem.innerText = '' + data.username + ': ' + data.message;
+        let stringChunks = JSON.parse(JSON.stringify(data.stringChunks));
+        let chunkTypes = JSON.parse(JSON.stringify(data.chunkTypes));
+        let setString = '';
+
+        for (let i = 0; i < stringChunks.length; i++) 
+        {
+            if (chunkTypes[i] == 0)
+            {
+                setString += stringChunks[i];
+            }
+            else
+            {
+                setString += '<img id="beanmote" src=\"' + stringChunks[i] + '\">';
+            }
+        }
+
+        listItem.innerHTML = '<em>' + data.username + '</em>: ' + setString;
         messageList.appendChild(listItem);
         if (messageList.childNodes.length > maxMessages)
         {
