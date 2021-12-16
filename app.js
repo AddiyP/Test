@@ -5,7 +5,7 @@ const app = express();
 const mongoURI = process.env.MOGODB_URI;
 const MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(mongoURI, function(err, db) {
   if (err) throw err;
   console.log("Database created!");
   db.close();
