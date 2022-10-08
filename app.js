@@ -30,7 +30,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 var generateUsername = function() {
     let first = ['spicy', 'chunky','empty', 'mid', 'crunchy', 'disappointing', 'gruff', 'crusty', 'acceptable'];
-    let second = ['meatloaf', 'pizza', 'fish', 'parrot', 'monkey', 'chimp', 'snacks', 'cat', '\'friend\''];
+    let second = ['meatloaf', 'pizza', 'fish', 'parrot', 'monkey', 'chimp', 'snacks', 'cat', 'spongerob'];
     let index1 = Math.floor(Math.random() * first.length);
     let index2 = Math.floor(Math.random() * second.length);
     return first[index1] + "-" + second[index2];
