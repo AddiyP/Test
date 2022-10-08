@@ -13,7 +13,7 @@ MongoClient.connect(mongoURI, function(err, db) {
   console.log("Database created!");
   db.close();
 });
-
+          //this is importatn
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
