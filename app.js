@@ -29,8 +29,8 @@ const server = app.listen(process.env.PORT || 5000, () => {
 });
 
 var generateUsername = function() {
-    let first = ['spicy', 'chunky', 'chubby', 'pathetic', 'dumb', 'desperate', 'empty', 'sussy', 'mid', 'goated'];
-    let second = ['meatloaf', 'pizza', 'fish', 'pig', 'clown', 'bakka', 'biden', 'monkey', 'chimp', 'op'];
+    let first = ['spicy', 'chunky','empty', 'mid', 'crunchy', 'disappointing', 'gruff', 'crusty', 'acceptable'];
+    let second = ['meatloaf', 'pizza', 'fish', 'pig', 'clown', 'monkey', 'chimp', 'snacks', 'cat', '\'friend\''];
     let index1 = Math.floor(Math.random() * first.length);
     let index2 = Math.floor(Math.random() * second.length);
     return first[index1] + "-" + second[index2];
