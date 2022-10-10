@@ -1,2 +1,2 @@
-# Test
-A Small Chat with Socket.io
+# BEANSCHAT
+www.beanschat.com
